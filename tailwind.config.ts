@@ -22,18 +22,10 @@ const config: Config = {
       },
       // HIER FÜGEN WIR UNSERE FARBEN EIN
       colors: {
-        'charcoal': '#1a1a1a', // Unser "Schwarz"
-        'ivory': '#F5F5F3',     // Unser "Weiss" / Papier
-        'blueprint-blue': '#3a7ca5', // Unser Akzentblau
-        'accent-gold': '#D4AF37', // Unser Gold-Akzent
-        'terminal-green': '#00ff41', // Classic terminal green
-        'terminal-amber': '#ffb000', // Classic terminal amber
-        // NEU: Neutrale Grautöne
-        'brand-gray': {
-          DEFAULT: '#888888',
-          light: '#CCCCCC',
-          dark: '#555555',
-        },
+        charcoal: '#1a1a1a',
+        'accent-gold': '#D4AF37',
+        'blueprint-blue': '#3a7ca5',
+        ivory: '#F5F5F3',
       },
       animation: {
         'marquee': 'marquee 25s linear infinite',

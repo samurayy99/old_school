@@ -1,5 +1,6 @@
 // app/layout.tsx
 
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Inter, Lora } from "next/font/google";
 import "./globals.css";
@@ -37,9 +38,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de">
+    <html lang="de" suppressHydrationWarning>
       <body className={`${inter.variable} ${lora.variable} ${ibmPlexMono.variable} font-sans`}>
-        {children}
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+        >
+            {children}
+        </ThemeProvider>
       </body>
     </html>
   );
