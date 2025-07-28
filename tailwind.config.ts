@@ -1,18 +1,18 @@
-// tailwind.config.ts
+// /Users/lenox27/old_school/tailwind.config.ts
 
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    // NEU: Globale Container-Styles für einheitliches Padding
     container: {
       center: true,
-      padding: '1.5rem', // 24px
+      padding: '1.5rem',
     },
     extend: {
       fontFamily: {
@@ -20,34 +20,44 @@ const config: Config = {
         serif: ['var(--font-lora)'],
         mono: ['var(--font-ibm-plex-mono)'],
       },
-      // HIER FÜGEN WIR UNSERE FARBEN EIN
       colors: {
-        charcoal: '#1a1a1a',
-        'accent-gold': '#D4AF37',
-        'blueprint-blue': '#3a7ca5',
+        brand: {
+          DEFAULT: 'var(--brand-green)',
+          dark: 'var(--brand-green-dark)',
+          light: 'var(--brand-green-light)',
+        },
+        charcoal: '#111111',
         ivory: '#F5F5F3',
+        'accent-gold': '#D4AF37',
       },
-      animation: {
-        'marquee': 'marquee 25s linear infinite',
-        'typing': 'typing 3.5s steps(40, end)',
-        'blink-caret': 'blink-caret .75s step-end infinite',
-      },
+      // HIER IST DIE BEREINIGTE UND FINALE ANIMATIONS-SEKTION
       keyframes: {
+        'fade-in-up': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(15px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
         marquee: {
-          '0%': { transform: 'translateX(100%)' },
+          '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-100%)' },
         },
-        typing: {
-          'from': { width: '0' },
-          'to': { width: '100%' },
+        'marquee-reverse': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0%)' },
         },
-        'blink-caret': {
-          'from, to': { borderColor: 'transparent' },
-          '50%': { borderColor: '#00ff41' },
-        },
+      },
+      animation: {
+        'fade-in-up': 'fade-in-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+        marquee: 'marquee 40s linear infinite',
+        'marquee-reverse': 'marquee-reverse 35s linear infinite',
       },
     },
   },
   plugins: [require('tailwindcss-animate')],
-}
-export default config
+};
+export default config;

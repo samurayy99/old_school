@@ -1,9 +1,93 @@
-/* app/globals.css */
+/* /Users/lenox27/old_school/app/globals.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Nixie+One&display=swap');
+
+:root {
+  --brand-green: #0D7E7F;          /* Bernds Grün */
+  --brand-green-dark: #258A8B;  /* Heller für Dark Mode */
+  --brand-green-light: #095858; /* Dunkler für Light Mode */
+  
+  /* Logo Feintuning - ChatGPT's Choke-Stroke System */
+  --logo-choke: 0.9;               /* Light: feiner Rückschnitt */
+  --logo-scale: 1;                 /* Light: keine Skalierung */
+}
+
+.dark {
+  /* Im Dark Mode wird die dekorative Markenfarbe weiß, wie von Bernd gewünscht */
+  --brand-green: #FFFFFF; 
+  
+  /* Logo Feintuning für Dark Mode */
+  --logo-choke: 4.0;               /* Dark: RADIKALER Rückschnitt */
+  --logo-scale: 0.985;             /* Dark: DEUTLICH kleiner */
+}
+
+/* ChatGPT's Award-winning CSS utilities */
+.perspective { 
+  perspective: 1200px; 
+}
+
+.backface-hidden { 
+  backface-visibility: hidden; 
+  -webkit-backface-visibility: hidden; 
+}
+
+.balance { 
+  text-wrap: balance; 
+}
+
+.prose-smooth { 
+  text-wrap: pretty; 
+}
+
+/* Optionale dezente Scrollbar-Reduktion für Copy-Bereiche */
+::-webkit-scrollbar { 
+  width: 8px; 
+  height: 8px; 
+}
+
+::-webkit-scrollbar-thumb { 
+  background: rgba(255,255,255,0.15); 
+  border-radius: 8px; 
+}
+
+.dark ::-webkit-scrollbar-thumb { 
+  background: rgba(255,255,255,0.15); 
+}
+
+/* Award-winning tabular numbers */
+.tabular-nums { 
+  font-variant-numeric: tabular-nums; 
+}
+
+/* 3D Flip helpers */
+.perspective { perspective: 1200px; }
+.backface-hidden { backface-visibility: hidden; }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
-  @apply bg-charcoal text-ivory/80; /* Standard-Hintergrund und leicht abgedunkelte Textfarbe */
+  /* Hintergrund für Light/Dark Mode - FIXED */
+  @apply bg-ivory dark:bg-black;
+  /* Text-Farben für Light/Dark Mode */
+  @apply text-charcoal dark:text-ivory/80;
+  /* Verhindert Scrollbalken */
+  overflow-x: hidden;
+  /* Ensure full background coverage */
+  min-height: 100vh;
+}
+
+/* Für den 3D-Flipping-Effekt der Karten */
+.perspective {
+  perspective: 1200px;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* Für Safari-Kompatibilität */
 }

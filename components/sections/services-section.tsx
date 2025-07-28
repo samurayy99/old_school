@@ -1,129 +1,89 @@
+// components/sections/services-section.tsx
+"use client";
+
+import ServiceCard from "@/components/ui/ServiceCard";
+import { services } from "@/lib/services";
+import { motion, useInView, Variants } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
 export function ServicesSection() {
-  const services = [
-    {
-      id: 'service_01_evaluation.sh',
-      title: 'Blockchain Investment Evaluation',
-      items: [
-        'Technical feasibility reviews',
-        'Tokenomics & economic model validation',
-        'Team and roadmap assessment',
-        'Smart contract and codebase audits'
-      ]
-    },
-    {
-      id: 'service_02_advisory.sh',
-      title: 'Portfolio Support & Advisory',
-      items: [
-        'Assess progress and performance',
-        'Identify technical or strategic gaps',
-        'Coach founding teams',
-        'Restructure token models or roadmaps'
-      ]
-    },
-    {
-      id: 'service_03_development.sh',
-      title: 'Custom Blockchain & AI Development',
-      items: [
-        'Smart contracts and decentralized protocols',
-        'AI-integrated dApps',
-        'Proof of Stake and validator infrastructure',
-        'Wallets, token launch platforms, and DAOs'
-      ]
-    },
-    {
-      id: 'service_04_strategy.sh',
-      title: 'Strategic Advisory on Emerging Trends',
-      items: [
-        'AI x Blockchain convergence',
-        'DePIN (decentralized physical infrastructure networks)',
-        'Restaking and modular security',
-        'Zero-knowledge proofs'
-      ]
-    }
-  ];
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.1 });
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  // ESC global schließen (nur wenn eine Karte offen)
+  useEffect(() => {
+    if (!openId) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenId(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [openId]);
+
+  const container: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.12 } },
+  };
 
   return (
-    <section className="py-16 lg:py-24 bg-ivory relative overflow-hidden">
-      {/* Subtile Blueprint-Gitter-Textur im Hintergrund */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="grid grid-cols-12 h-full">
-          {Array.from({ length: 48 }).map((_, i) => (
-            <div key={i} className="border-r border-blueprint-blue h-full" />
-          ))}
-        </div>
-        <div className="absolute inset-0 grid grid-rows-12 w-full">
-          {Array.from({ length: 48 }).map((_, i) => (
-            <div key={i} className="border-b border-blueprint-blue w-full" />
-          ))}
-        </div>
-      </div>
-
-      <div className="relative z-10">
-        {/* Sektion-Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-serif text-charcoal mb-4">
-            What We Offer
-          </h2>
-          <p className="text-lg text-brand-gray max-w-2xl mx-auto">
-            Expert blockchain and AI services from the heart of Crypto Valley
+    <section
+      id="services"
+      ref={ref}
+      className="relative pt-16 sm:pt-20 lg:pt-24 xl:pt-28 pb-20 sm:pb-24 lg:pb-28 xl:pb-32 bg-ivory dark:bg-black text-charcoal dark:text-ivory overflow-hidden"
+    >
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-24 text-center"
+        >
+          <p className="font-mono text-sm tracking-widest text-brand/80 text-center mb-3 lg:mb-4">SERVICES</p>
+          <div className="flex items-center justify-center mb-8 lg:mb-10">
+            <div className="w-8 h-0.5 bg-brand mr-4"></div>
+            <h2 className="font-lora text-3xl sm:text-4xl lg:text-5xl balance tracking-tight">
+              Our Expertise
+            </h2>
+            <div className="w-8 h-0.5 bg-brand ml-4"></div>
+          </div>
+          <p className="text-lg sm:text-xl lg:text-2xl text-charcoal/70 dark:text-ivory/60 max-w-3xl mx-auto balance leading-relaxed">
+            Delivering clarity and execution across blockchain technology and emerging digital assets.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Services Grid - 2x2 Desktop/Tablet, gestapelt Mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-          {services.map((service, index) => (
-            <ServiceCard key={index} service={service} />
+        {/* Grid */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12"
+        >
+          {services.map((s) => (
+            <motion.div
+              key={s.id}
+              variants={{
+                hidden: { opacity: 0, y: 40, scale: 0.98 },
+                show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+              }}
+            >
+              <ServiceCard
+                {...s}
+                open={openId === s.id}
+                setOpen={setOpenId}
+              />
+            </motion.div>
           ))}
+        </motion.div>
+      </div>
+      
+      {/* Elegant separator */}
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-16 h-px bg-gradient-to-r from-transparent via-brand/20 to-transparent"></div>
         </div>
       </div>
     </section>
   );
 }
-
-// Einzelne Service-Karte Komponente
-function ServiceCard({ service }: { service: { id: string; title: string; items: string[] } }) {
-  return (
-    <div className="group relative bg-charcoal rounded-lg border border-brand-gray-dark p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-blueprint-blue/20 hover:-translate-y-1">
-      {/* Terminal Header mit macOS-Buttons */}
-      <div className="flex items-center mb-6">
-        {/* macOS Traffic Light Buttons */}
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-terminal-amber"></div>
-          <div className="w-3 h-3 rounded-full bg-terminal-green"></div>
-        </div>
-        
-        {/* Terminal Titel */}
-        <span className="ml-4 text-brand-gray-light font-mono text-sm">
-          // {service.id}
-        </span>
-      </div>
-
-      {/* Service-Überschrift */}
-      <h3 className="text-xl lg:text-2xl font-serif text-ivory mb-6 leading-tight">
-        {service.title}
-      </h3>
-
-      {/* Leistungsliste */}
-      <ul className="space-y-3">
-        {service.items.map((item, index) => (
-          <li key={index} className="flex items-start">
-            {/* Terminal-Green Pfeil */}
-            <span className="text-terminal-green mr-3 mt-0.5 font-mono">
-              &gt;
-            </span>
-            {/* Leistungstext */}
-            <span className="text-brand-gray-light font-sans leading-relaxed">
-              {item}
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      {/* Hover-Glow-Effekt */}
-      <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-        <div className="absolute inset-0 rounded-lg ring-2 ring-blueprint-blue/30 ring-offset-2 ring-offset-ivory"></div>
-      </div>
-    </div>
-  );
-} 

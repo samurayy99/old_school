@@ -1,162 +1,219 @@
+"use client";
+
+import { CountUp } from "@/components/ui/CountUp";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { Timeline } from "../ui/timeline";
+import { useRef } from "react";
+
+type Milestone = {
+  id: string;
+  date: string;
+  title: string;
+  body: string;
+  eth?: number;
+};
+
+const timeline: Milestone[] = [
+  {
+    id: "ethereum",
+    date: "2015-2017",
+    title: "Ethereum Foundation",
+    body:
+      "Early strategy & ecosystem growth focusing on governance, community trust and decentralisation principles at the core.",
+  },
+  {
+    id: "fundraising",
+    date: "2017",
+    title: "Groundbreaking Fundraising",
+    body:
+      "Structured, compliant token sales for real products combining economic design with responsible execution.",
+    // eth removed - already shown in KPI chips above
+  },
+  {
+    id: "builder",
+    date: "2018-Present",
+    title: "Builder & Founder",
+    body:
+      "Co-created Swarm City, AVADO and CasperLabs delivering infrastructure, tooling and user-facing dApps that actually shipped.",
+  },
+  {
+    id: "oldschool",
+    date: "Today",
+    title: "Old School GmbH",
+    body:
+      "Based in Zug's Crypto Valley. Bridging Web3 & AI with rigorous evaluation, hands-on building and decisive strategy.",
+  },
+];
 
 export function FounderSection() {
-  // Bernd's OG Career Journey Data
-  const timelineData = [
-    {
-      title: "Ethereum Foundation",
-      date: "2015-2017",
-      content: (
-        <p className="text-lg leading-relaxed">
-          As Advisory Board Member of the Ethereum Foundation, Bernd helped set the course 
-          for Ethereum's early ecosystem and decentralization. His insights shaped the foundation's 
-          approach to supporting developers and growing the Web3 space from the ground up.
-        </p>
-      ),
-    },
-    {
-      title: "Groundbreaking Fundraising",
-      date: "2017",
-      content: (
-        <p className="text-lg leading-relaxed">
-          Raised over <span className="text-accent-gold font-semibold">77,000 ETH</span> for 
-          projects like Swarm City and CasperLabs, demonstrating expertise in tokenomics and 
-          community-building during crypto's most transformative period.
-        </p>
-      ),
-    },
-    {
-      title: "Hands-on Founder",
-      date: "2018-Present",
-      content: (
-        <p className="text-lg leading-relaxed">
-          As founder and core contributor at <span className="text-blueprint-blue font-semibold">
-          Swarm City</span>, <span className="text-blueprint-blue font-semibold">AVADO</span>, 
-          and <span className="text-blueprint-blue font-semibold">CasperLabs</span>, Bernd has 
-          proven that vision can be shipped as working, decentralized products that serve real users.
-        </p>
-      ),
-    },
-    {
-      title: "Old School GmbH",
-      date: "Present",
-      content: (
-        <p className="text-lg leading-relaxed">
-          Founded Old School GmbH in the heart of <span className="text-terminal-green font-semibold">
-          Crypto Valley</span> to channel his experience into the next generation of founders, 
-          family offices, and investors seeking authentic blockchain expertise.
-        </p>
-      ),
-    },
-  ];
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   return (
-    <section className="py-16 lg:py-24 bg-ivory relative overflow-hidden">
-      {/* Subtiles Blueprint-Gitter im Hintergrund */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="grid grid-cols-12 h-full">
-          {Array.from({ length: 48 }).map((_, i) => (
-            <div key={i} className="border-r border-blueprint-blue h-full" />
-          ))}
-        </div>
-        <div className="absolute inset-0 grid grid-rows-12 w-full">
-          {Array.from({ length: 48 }).map((_, i) => (
-            <div key={i} className="border-b border-blueprint-blue w-full" />
-          ))}
+    <section
+      id="founder"
+      ref={sectionRef}
+      className="relative isolate pt-24 sm:pt-28 lg:pt-32 xl:pt-36 pb-24 sm:pb-28 lg:pb-32 xl:pb-36 bg-ivory dark:bg-black text-charcoal dark:text-ivory overflow-hidden"
+    >
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center"
+        >
+          <p className="font-mono text-sm tracking-widest text-brand/80">FOUNDER</p>
+          <div className="flex items-center justify-center mt-3 lg:mt-4">
+            <div className="w-8 h-0.5 bg-brand mr-4"></div>
+            <h2 className="font-lora text-3xl sm:text-4xl lg:text-5xl tracking-tight">Bernd Lapp</h2>
+            <div className="w-8 h-0.5 bg-brand ml-4"></div>
+          </div>
+          <p className="mt-6 lg:mt-8 text-lg sm:text-xl lg:text-2xl text-charcoal/70 dark:text-ivory/70 max-w-3xl mx-auto balance leading-relaxed">
+            From Ethereum&apos;s inner circle to founder and advisor, a steady hand for ambitious Web3 & AI initiatives.
+          </p>
+        </motion.div>
+
+        {/* Portrait + KPI Chips */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          className="mt-12 flex flex-col items-center"
+        >
+          <div className="relative w-40 h-48 sm:w-48 sm:h-60 md:w-56 md:h-72 lg:w-64 lg:h-80 rounded-2xl overflow-hidden border border-charcoal/10 dark:border-ivory/10 shadow-2xl">
+            <Image
+              src="/bernd_lapp.jpeg"
+              alt="Bernd Lapp - Founder of Old School GmbH"
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 40vw, 480px"
+              className="object-cover object-top"
+              priority
+            />
+            {/* subtiler Brand‑Ring */}
+            <div className="pointer-events-none absolute inset-0 ring-1 ring-brand/20 rounded-2xl" />
+          </div>
+
+          {/* KPIs */}
+          <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-2 sm:gap-3 px-4">
+            <KPI 
+              label="Years in crypto" 
+              value={
+                <>
+                  <CountUp
+                    value={new Date().getFullYear() - 2014}
+                    duration={4.0}
+                    delay={0.2}
+                    className="tabular-nums font-semibold"
+                  />
+                  <span className="font-semibold"> years</span>
+                </>
+              } 
+            />
+            <KPI 
+              label="ETH raised" 
+              value={
+                <>
+                  <CountUp
+                    value={77000}
+                    duration={3.5}
+                    delay={0.4}
+                    className="tabular-nums font-semibold"
+                  />
+                  <span className="font-semibold"> ETH</span>
+                </>
+              } 
+            />
+            <KPI 
+              label="Ventures shipped" 
+              value={
+                <>
+                  <CountUp
+                    value={3}
+                    duration={3.0}
+                    delay={0.6}
+                    className="tabular-nums font-semibold"
+                  />
+                  <span className="font-semibold">+</span>
+                </>
+              } 
+            />
+          </div>
+        </motion.div>
+
+        {/* Timeline */}
+        <div className="mt-24 sm:mt-28 lg:mt-32 xl:mt-36 grid grid-cols-1 lg:grid-cols-[minmax(0,800px)] justify-center">
+          <div className="relative mx-auto w-full max-w-3xl">
+            <div className="space-y-10">
+              {timeline.map((milestone, index) => (
+                <TimelineItem key={milestone.id} milestone={milestone} index={index} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="relative z-10">
-        {/* Desktop: Zwei-Spalten Layout, Mobile: Gestapelt */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          
-          {/* Linke Spalte: Timeline */}
-          <div className="order-2 lg:order-1">
-            <div className="max-w-2xl mx-auto lg:mx-0 pl-8 lg:pl-16">
-              {/* Section Header */}
-              <div className="mb-16">
-                <p className="text-sm font-mono text-blueprint-blue uppercase tracking-widest mb-4">
-                  THE PIONEER
-                </p>
-                <h2 className="text-4xl lg:text-5xl font-serif text-charcoal mb-6 leading-tight">
-                  Expertise since Day One.
-                </h2>
-                <p className="text-lg text-brand-gray leading-relaxed">
-                  From Ethereum's founding days to today's AI revolution, 
-                  Bernd has been shaping the future of decentralized technologies.
-                </p>
-              </div>
-
-              {/* Timeline */}
-              <Timeline data={timelineData} />
-            </div>
-          </div>
-
-          {/* Rechte Spalte: Sticky Portrait + CTA */}
-          <div className="order-1 lg:order-2">
-            <div className="lg:sticky lg:top-24 space-y-8">
-              {/* Portrait */}
-              <div className="relative">
-                {/* Glow Effect Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blueprint-blue/5 via-transparent to-accent-gold/5 rounded-2xl transform rotate-1"></div>
-                
-                {/* Portrait Container */}
-                <div className="relative bg-ivory rounded-2xl p-1 ring-2 ring-blueprint-blue/20 shadow-2xl">
-                  {/* Placeholder for Portrait - Replace with actual image */}
-                  <div className="aspect-[4/5] overflow-hidden rounded-xl">
-                    <Image
-                      src="/bernd_lapp.jpeg"
-                      alt="Portrait of Bernd Lapp, Founder of Old School GmbH"
-                      width={500}
-                      height={625}
-                      className="object-cover object-top w-full h-full"
-                      priority
-                    />
-                  </div>
-                </div>
-
-                {/* Subtle floating elements */}
-                <div className="absolute -top-2 -right-2 w-4 h-4 bg-accent-gold rounded-full opacity-60"></div>
-                <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-blueprint-blue rounded-full opacity-40"></div>
-              </div>
-
-              {/* CTA Section */}
-              <div className="text-center lg:text-left space-y-4">
-                <h3 className="text-2xl font-serif text-charcoal">
-                  Connect with Bernd
-                </h3>
-                <p className="text-brand-gray leading-relaxed">
-                  Ready to discuss your blockchain or AI project? 
-                  Let's explore how Old School GmbH can help.
-                </p>
-                
-                {/* LinkedIn Button */}
-                <a
-                  href="https://linkedin.com/in/berndlapp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Connect with Bernd Lapp on LinkedIn"
-                  className="inline-flex items-center justify-center w-full lg:w-auto bg-accent-gold text-charcoal px-8 py-4 rounded-lg font-semibold hover:bg-accent-gold/90 transition-all duration-300 hover:scale-105 shadow-lg"
-                >
-                  <svg className="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
-                  Connect on LinkedIn
-                </a>
-
-                {/* Email CTA */}
-                <a
-                  href="mailto:bernd@oldschool.ag"
-                  className="block w-full lg:w-auto text-center bg-transparent border-2 border-blueprint-blue text-blueprint-blue px-8 py-4 rounded-lg font-semibold hover:bg-blueprint-blue hover:text-ivory transition-all duration-300"
-                >
-                  bernd@oldschool.ag
-                </a>
-              </div>
-            </div>
-          </div>
+      
+      {/* Elegant separator */}
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-16 h-px bg-gradient-to-r from-transparent via-brand/20 to-transparent"></div>
         </div>
       </div>
     </section>
   );
-} 
+}
+
+// Timeline Item Component - Clean & Elegant
+function TimelineItem({ milestone }: { milestone: Milestone; index: number }) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="rounded-xl border border-charcoal/20 dark:border-ivory px-5 py-5 shadow-lg shadow-brand/10"
+    >
+      <p className="font-mono text-[13px] text-charcoal/60 dark:text-ivory/60">
+        {milestone.date}
+      </p>
+      <h3 className="mt-1 text-xl font-semibold tracking-tight font-lora">
+        {milestone.title}
+      </h3>
+      <p className="mt-3 text-base leading-relaxed text-charcoal/80 dark:text-ivory/80">
+        {milestone.body}
+      </p>
+
+      {milestone.eth ? (
+        <div className="mt-5 inline-flex items-center gap-2 rounded-md border border-charcoal/12 dark:border-ivory/12 bg-white/40 dark:bg-white/[0.04] px-3 py-2">
+          <span className="text-base font-bold text-charcoal dark:text-ivory">
+            <CountUp
+              value={milestone.eth}
+              duration={3.0}
+              className="tabular-nums font-bold"
+            />
+          </span>
+          <span className="text-base font-bold">ETH</span>
+          <span className="text-[11px] px-2 py-0.5 rounded-full bg-charcoal/5 dark:bg-ivory/10 text-charcoal/60 dark:text-ivory/60">
+            raised
+          </span>
+        </div>
+      ) : null}
+    </motion.article>
+  );
+}
+
+/* ---------- helpers ---------- */
+function KPI({
+  label,
+  value,
+}: {
+  label: string;
+  value: string | React.ReactNode;
+}) {
+  return (
+    <div className="rounded-full border border-charcoal/12 dark:border-ivory/12 bg-white/60 dark:bg-white/[0.04] px-3 py-2 sm:px-4 text-xs sm:text-sm">
+      <span className="mr-1 sm:mr-2 text-charcoal/60 dark:text-ivory/60">{label}</span>
+      <span className="font-semibold text-charcoal dark:text-ivory">{value}</span>
+    </div>
+  );
+}

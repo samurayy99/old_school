@@ -1,101 +1,204 @@
+"use client";
+
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+
 export function FooterSection() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-charcoal text-terminal-green relative overflow-hidden">
-      {/* Terminal-style background grid */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="grid grid-cols-8 sm:grid-cols-12 lg:grid-cols-16 h-full">
-          {Array.from({ length: 128 }).map((_, i) => (
-            <div key={i} className="border-r border-terminal-green/20 h-full" />
-          ))}
-        </div>
-      </div>
-
-      {/* Oberer CTA-Bereich */}
-      <div className="relative z-10 py-16 lg:py-24">
-        <div className="container mx-auto px-4 text-center">
-          {/* Hauptheadline */}
-          <h2 className="text-4xl lg:text-5xl xl:text-6xl font-serif text-ivory mb-6 leading-tight">
-            Ready to shape the future together?
+    <footer
+      id="contact"
+      className="relative isolate bg-ivory dark:bg-black text-charcoal dark:text-ivory overflow-hidden"
+      aria-labelledby="contact-heading"
+    >
+      {/* Top: Statement */}
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 xl:pt-36 pb-28 sm:pb-32 lg:pb-36 xl:pb-40 text-center">
+        <div className="flex items-center justify-center">
+          <div className="w-8 h-0.5 bg-brand mr-4"></div>
+          <h2
+            id="contact-heading"
+            className="font-lora text-3xl sm:text-4xl lg:text-5xl tracking-tight text-charcoal dark:text-ivory"
+          >
+            Ready to shape the future?
           </h2>
+          <div className="w-8 h-0.5 bg-brand ml-4"></div>
+        </div>
 
-          {/* Sub-Text */}
-          <p className="font-sans text-brand-gray-light text-lg lg:text-xl leading-relaxed max-w-3xl mx-auto mb-10">
-            Whether investment, advisory, or a breakthrough project at the frontier of blockchain & AI — let's talk confidentially.
-          </p>
+        <figure className="mt-10 lg:mt-12">
+          <blockquote className="text-base sm:text-lg lg:text-xl text-charcoal/70 dark:text-ivory/70 italic leading-relaxed max-w-4xl mx-auto balance">
+            &ldquo;With roots in Ethereum&apos;s early days, we turn complex ideas into
+            scalable, decentralized solutions. Let&apos;s talk confidentially about
+            your vision.&rdquo;
+          </blockquote>
+          <figcaption className="mt-6 lg:mt-8 text-lg sm:text-xl font-medium text-charcoal/70 dark:text-ivory/70">
+            Bernd Lapp
+          </figcaption>
+        </figure>
 
-          {/* Haupt-Button */}
-          <div className="mb-8">
-            <a
-              href="mailto:bernd@oldschool.ag"
-              className="inline-flex items-center bg-accent-gold text-charcoal px-8 py-4 lg:px-12 lg:py-6 rounded-lg font-bold text-lg lg:text-xl hover:bg-accent-gold/90 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-accent-gold/20"
-            >
-              Send Direct Message
-            </a>
-          </div>
-
-          {/* Terminal-Prompt (Das OG-Detail) */}
-          <div className="font-mono text-terminal-green text-sm lg:text-base">
-            <span className="mr-2">&gt;</span>
-            contact bernd@oldschool.ag
-          </div>
+        {/* Contact chips */}
+        <div className="mt-12 sm:mt-16 lg:mt-20 flex flex-wrap items-center justify-center gap-3 sm:gap-4 lg:gap-6 px-4">
+          <CopyEmailChip email="bernd@oldschool.ag" />
+          <LinkChip
+            href="https://www.linkedin.com/in/berndlapp/"
+            label="LinkedIn"
+            ariaLabel="Open Bernd Lapp on LinkedIn"
+          >
+            <LinkedInIcon className="h-4 w-4" />
+          </LinkChip>
         </div>
       </div>
 
-      {/* Trennlinie */}
-      <hr className="border-brand-gray-dark mx-4 lg:mx-8" />
+      {/* Bottom bar */}
+      <div className="relative z-10 border-t border-charcoal/10 dark:border-ivory/10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex flex-col gap-4 sm:gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <nav
+            aria-label="Legal"
+            className="flex items-center justify-center sm:justify-start gap-6 text-xs text-charcoal/60 dark:text-ivory/60"
+          >
+            <a
+              href="/impressum"
+              className="hover:text-charcoal dark:hover:text-ivory transition-colors"
+            >
+              Legal
+            </a>
+            <a
+              href="/privacy"
+              className="hover:text-charcoal dark:hover:text-ivory transition-colors"
+            >
+              Privacy
+            </a>
+          </nav>
 
-      {/* Unterer Footer-Bereich */}
-      <div className="relative z-10 py-12">
-        <div className="container mx-auto px-4">
-          {/* 3-spaltiges Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
-            
-            {/* Linke Spalte: Company Info */}
-            <div className="text-brand-gray-light font-sans">
-              <div className="font-semibold">Old School GmbH</div>
-              <div>Zug, Switzerland</div>
-            </div>
-
-            {/* Mittlere Spalte: LinkedIn Icon */}
-            <div className="flex justify-center">
-              <a
-                href="https://linkedin.com/in/berndlapp"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Connect with Bernd Lapp on LinkedIn"
-                className="text-brand-gray-light hover:text-ivory transition-colors duration-300 hover:scale-110 transform"
-              >
-                <svg className="w-8 h-8 lg:w-10 lg:h-10" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </a>
-            </div>
-
-            {/* Rechte Spalte: Legal Links */}
-            <div className="flex flex-col md:flex-row md:justify-end space-y-2 md:space-y-0 md:space-x-6 text-brand-gray-light font-sans">
-              <a
-                href="/impressum"
-                className="hover:text-ivory transition-colors duration-300"
-              >
-                Impressum
-              </a>
-              <a
-                href="/privacy"
-                className="hover:text-ivory transition-colors duration-300"
-              >
-                Privacy Policy
-              </a>
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div className="text-center text-brand-gray-light font-sans text-sm mt-12 pt-8 border-t border-brand-gray-dark">
-            © {currentYear} Old School GmbH. All Rights Reserved.
-          </div>
+          <p className="text-xs text-charcoal/60 dark:text-ivory/60 text-center sm:text-right">
+            © {year} Old School GmbH. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
   );
-} 
+}
+
+/* ---------- Chips ---------- */
+
+function baseChipClasses(extra = "") {
+  return [
+    "group inline-flex items-center gap-2 rounded-full",
+    "border border-charcoal/12 dark:border-ivory/12",
+    "bg-white/60 dark:bg-white/[0.04]",
+    "px-4 py-2 text-sm",
+    "text-charcoal dark:text-ivory",
+    "transition-colors",
+    extra,
+  ].join(" ");
+}
+
+// function StaticChip({ children }: { children: React.ReactNode }) {
+//   return <div className={baseChipClasses()}>{children}</div>;
+// }
+
+function LinkChip({
+  href,
+  label,
+  ariaLabel,
+  children,
+}: {
+  href: string;
+  label: string;
+  ariaLabel: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={ariaLabel}
+      className={baseChipClasses(
+        "hover:border-brand/30 hover:bg-white/70 dark:hover:bg-white/[0.06]"
+      )}
+    >
+      {children}
+      <span className="font-medium">{label}</span>
+    </a>
+  );
+}
+
+function CopyEmailChip({ email }: { email: string }) {
+  const [copied, setCopied] = useState(false);
+
+  async function onCopy() {
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    } catch {
+      // Fallback: öffne Mailto wenn Clipboard blockiert ist
+      window.location.href = `mailto:${email}`;
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={onCopy}
+      className={baseChipClasses(
+        "hover:border-brand/30 hover:bg-white/70 dark:hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/60"
+      )}
+      aria-live="polite"
+    >
+      <MailIcon className="h-4 w-4" />
+      <span className="font-medium">{email}</span>
+
+      <AnimatePresence initial={false}>
+        {copied && (
+          <motion.span
+            key="copied"
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.18 }}
+            className="ml-2 inline-flex items-center gap-1 rounded-full bg-brand/15 px-2 py-0.5 text-xs font-semibold text-brand"
+          >
+            <CheckIcon className="h-3 w-3" />
+            Copied
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </button>
+  );
+}
+
+/* ---------- Icons (inline, schlank) ---------- */
+
+function LinkedInIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5ZM3 9h4v12H3V9Zm7 0h3.8v1.64h.05c.53-.94 1.82-1.93 3.75-1.93 4.01 0 4.75 2.64 4.75 6.08V21h-4v-5.3c0-1.26-.02-2.88-1.76-2.88-1.77 0-2.04 1.38-2.04 2.79V21h-4V9Z" />
+    </svg>
+  );
+}
+
+function MailIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.5-.5a.5.5 0 0 0-.5.5v.36l8 4.64 8-4.64V6.5a.5.5 0 0 0-.5-.5h-15ZM20 9.86l-7.55 4.38a1.5 1.5 0 0 1-1.9 0L3 9.86V17.5a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5V9.86Z" />
+    </svg>
+  );
+}
+
+// function LocationIcon({ className = "h-4 w-4" }: { className?: string }) {
+//   return (
+//     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+//       <path d="M12 2.5a7 7 0 0 0-7 7c0 5.25 7 12 7 12s7-6.75 7-12a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z" />
+//     </svg>
+//   );
+// }
+
+function CheckIcon({ className = "h-3 w-3" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+    </svg>
+  );
+}
