@@ -7,9 +7,9 @@ import { useState } from "react";
 
 import { AvadoLogo } from "@/components/logos/AvadoLogo";
 import { EthereumLogo } from "@/components/logos/EthereumLogo";
-import { InternetComputerLogo } from "@/components/logos/InternetComputerLogo";
 import { LiskLogo } from "@/components/logos/LiskLogo";
 import { NearLogo } from "@/components/logos/NearLogo";
+import { SwarmCityLogo } from "@/components/logos/SwarmCityLogo";
 
 type LogoItem =
   | {
@@ -17,29 +17,40 @@ type LogoItem =
       href: string;
       component: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
       isBitmap?: false;
+      className: string;
     }
   | {
       alt: string;
       href: string;
       src: string;
       isBitmap: true;
+      className: string;
     };
 
 const logos: LogoItem[] = [
-  { component: EthereumLogo, alt: "Ethereum", href: "https://ethereum.org/" },
-  { component: LiskLogo, alt: "Lisk", href: "https://lisk.com/" },
-  { component: NearLogo, alt: "NEAR Protocol", href: "https://near.org/" },
+  { component: EthereumLogo, alt: "Ethereum", href: "https://ethereum.org/", className: "h-30 w-auto" },
+  { component: LiskLogo, alt: "Lisk", href: "https://lisk.com/", className: "h-8 sm:h-10 w-auto" },
+  { component: NearLogo, alt: "NEAR Protocol", href: "https://near.org/", className: "h-10 sm:h-12 w-auto" },
   {
     isBitmap: true,
     src: "/logos/Casper_Wordmark_Horizontal_Black_RGB.png",
     alt: "CasperLabs",
     href: "https://casper.network/",
+    className: "h-auto w-32 sm:w-36"
   },
-  { component: AvadoLogo, alt: "AVADO", href: "https://ava.do/" },
   {
-    component: InternetComputerLogo,
-    alt: "DFINITY / Internet Computer",
-    href: "https://internetcomputer.org/",
+    isBitmap: true,
+    src: "/logos/proxeus-logo.jpeg",
+    alt: "Proxeus",
+    href: "https://proxeus.com/",
+    className: "h-auto w-48 sm:w-56"
+  },
+  { component: AvadoLogo, alt: "AVADO", href: "https://ava.do/", className: "h-8 sm:h-10 w-auto" },
+  {
+    component: SwarmCityLogo,
+    alt: "Swarm City",
+    href: "https://swarm.city/",
+    className: "h-auto w-32 sm:w-36"
   },
 ];
 
@@ -86,7 +97,7 @@ export function ReferencesSection() {
         </motion.p> */}
 
         <motion.div
-          className="mt-16 sm:mt-20 lg:mt-24 xl:mt-28 mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-3 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-12 sm:gap-y-16 lg:gap-y-20 items-center justify-items-center"
+          className="mt-16 sm:mt-20 lg:mt-24 xl:mt-28 mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 flex flex-wrap justify-center items-center gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-8 sm:gap-y-12 lg:gap-y-16"
           style={{ perspective: "1000px" }}
           onMouseLeave={() => setActive(null)}
           {...(!reduce && {
@@ -103,7 +114,7 @@ export function ReferencesSection() {
         >
           {logos.map((logo, i) => {
             const isActive = active === i;
-
+            const isProxeus = logo.alt === "Proxeus";
             return (
               <LogoBadge
                 key={logo.alt}
@@ -113,16 +124,27 @@ export function ReferencesSection() {
                 onActivate={() => handleActivate(i)}
                 onDeactivate={() => setActive(null)}
                 isBitmap={"isBitmap" in logo ? logo.isBitmap : false}
+                className={isProxeus ? "col-span-2 md:col-span-1" : ""}
               >
                 {"component" in logo ? (
-                  <logo.component className="h-8 w-auto sm:h-10 lg:h-12 transition-all duration-300" />
+                  <logo.component
+                    className={
+                      logo.alt === "Ethereum"
+                        ? "h-14 w-auto object-contain"
+                        : "h-auto w-full max-w-[150px] max-h-12 object-contain"
+                    }
+                  />
                 ) : (
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     width={180}
                     height={64}
-                    className="h-8 w-auto sm:h-10 lg:h-12 object-contain transition-all duration-300"
+                    className={
+                      logo.alt === "Proxeus"
+                        ? "h-auto w-56 object-contain"
+                        : "h-auto w-full max-w-[150px] max-h-12 object-contain"
+                    }
                     loading="lazy"
                   />
                 )}

@@ -15,9 +15,12 @@ export const services: Service[] = [
     image: "/services/service-evaluation.jpg",
     alt: "Abstract blockchain nodes and connections",
     copy: [
-      "We stress test architectures, consensus assumptions, and security posture. Our reviews surface edge case risks before capital is deployed.",
-      "Token design is validated with scenario analysis and incentive modeling. We quantify dilution, runway, and sustainability under market stress.",
-      "Output: a crisp risk memo with clear go, fix, or no go recommendations built for decision makers.",
+      "We help investors make confident decisions before deploying capital into blockchain projects.",
+      "Our evaluation covers three pillars:",
+      "Technical Due Diligence: Deep analysis of protocol architecture, scalability, and code maturity.",
+      "Tokenomics: Scenario modeling for incentives, dilution, and long-term sustainability.",
+      "Ecosystem Fit: Assessment of adoption potential, network effects, and competitive positioning.",
+      "The result: a clear investment memo with a “Go,” “Revise,” or “Pass” recommendation — built for decision-makers."
     ],
   },
   {
@@ -26,9 +29,12 @@ export const services: Service[] = [
     image: "/services/service-advisory.jpg",
     alt: "Portfolio dashboards and performance analytics",
     copy: [
-      "We partner with founders post investment: cadence reviews, KPI tracking, hiring support and hands on unblockers.",
-      "When progress stalls, we diagnose gaps across product, infra and governance, then design a tight turnaround plan.",
-      "Our systematic approach identifies bottlenecks early and provides actionable roadmaps to restore growth momentum and investor confidence.",
+      "We partner with founders post-investment to protect and grow investor capital through hands-on, high-leverage support.",
+      "This includes:",
+      "Cadence Reviews & KPI Tracking: Ensuring progress is measurable and momentum is real.",
+      "Hiring & Governance Support: Filling key gaps and aligning teams around outcomes.",
+      "Turnaround Plans: When things stall, we diagnose issues across product, infra, or token design and deliver clear roadmaps to get back on track.",
+      "Our systematic approach uncovers friction early, accelerates execution, and helps restore both growth and investor confidence."
     ],
   },
   {
@@ -37,9 +43,13 @@ export const services: Service[] = [
     image: "/services/service-development.jpg",
     alt: "Developer working on smart contracts and AI models",
     copy: [
-      "From battle tested smart contracts to AI infused dApps we ship. Secure by design, audited, observable.",
-      "We stand up validator and node infra, CI/CD pipelines, telemetry and incident response that scales with usage.",
-      "Every deployment includes comprehensive testing, monitoring dashboards, and emergency protocols to ensure bulletproof production operations.",
+      "We design and build real-world applications at the intersection of blockchain and AI — from concept to production.",
+      "Whether it's a decentralized protocol, validator infrastructure, AI-powered smart contract logic, or full-stack dApps, our in-house and partner teams deliver:",
+      "Blockchain Architecture & Protocol Design",
+      "Smart Contracts & Token Infrastructure",
+      "AI Integration & On-Chain Analytics",
+      "Validator & Staking Systems",
+      "We turn ideas into audited, deployable systems — fast, secure, and built for scale."
     ],
   },
   {
@@ -48,9 +58,13 @@ export const services: Service[] = [
     image: "/services/service-strategy.jpg",
     alt: "Futuristic network visual with trend vectors",
     copy: [
-      "We translate hype into strategy: AI and Blockchain, DePIN, restaking, modular security, ZK. What's real, where to play, how to win.",
-      "Clear theses, market maps and partner shortlists updated with signal from Crypto Valley and beyond.",
-      "Our advisory combines deep technical knowledge with market intelligence to position your project ahead of emerging trends and competitive threats.",
+      "We help investors and founders stay ahead of the curve by identifying and executing on what’s next in Web3 and AI.",
+      "Our focus areas include:",
+      "AI x Blockchain: Intelligent agents, on-chain inference, and trustless data pipelines.",
+      "DePIN: Decentralized physical infrastructure networks and tokenized coordination.",
+      "Restaking & Modular Chains: Capital-efficient security and scalable protocol design.",
+      "ZK Proofs: Privacy, scalability, and composability through zero-knowledge systems.",
+      "We translate complex trends into actionable strategies — before they become mainstream."
     ],
   },
 ];

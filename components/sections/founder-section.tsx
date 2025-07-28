@@ -32,9 +32,9 @@ const timeline: Milestone[] = [
   {
     id: "builder",
     date: "2018-Present",
-    title: "Builder & Founder",
+    title: "Execution-Focused Founder",
     body:
-      "Co-created Swarm City, AVADO and CasperLabs delivering infrastructure, tooling and user-facing dApps that actually shipped.",
+      "From Swarm.City to AVA.DO and Relai.com, Bernd initiated and led teams that turned blockchain concepts into deployed infrastructure, tools, and consumer-ready dApps.",
   },
   {
     id: "oldschool",
@@ -70,7 +70,7 @@ export function FounderSection() {
             <div className="w-8 h-0.5 bg-brand ml-4"></div>
           </div>
           <p className="mt-6 lg:mt-8 text-lg sm:text-xl lg:text-2xl text-charcoal/70 dark:text-ivory/70 max-w-3xl mx-auto balance leading-relaxed">
-            From Ethereum&apos;s inner circle to founder and advisor, a steady hand for ambitious Web3 & AI initiatives.
+            From Ethereum’s Advisory Board to founder and innovator — a trusted guide for ambitious Web3 and AI initiatives.
           </p>
         </motion.div>
 

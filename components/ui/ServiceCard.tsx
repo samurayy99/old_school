@@ -5,7 +5,7 @@ import { Service } from "@/lib/services";
 import { cn } from "@/lib/utils";
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 type Props = Service & {
   open: boolean;
@@ -18,9 +18,9 @@ export default function ServiceCard(props: Props) {
   const reduce = useReducedMotion();
   const [hasFocus, setHasFocus] = useState(false);
 
-  const toggle = useCallback(() => {
+  const toggle = () => {
     setOpen(open ? null : id);
-  }, [open, id, setOpen]);
+  };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter" || e.key === " ") {

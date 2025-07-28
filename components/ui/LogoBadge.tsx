@@ -48,13 +48,14 @@ export function LogoBadge({
   //   und im Dark weiß (dark:invert), plus Fokus-Glow/Ring.
   const colorClass = isBitmap
     ? cn(
-        // Basis: monochrom
-        "brightness-0 dark:invert",
-        // Helligkeit/Fokus
+        // Bitmaps werden via Filter einheitlich behandelt
+        isActive ? "grayscale-0" : "grayscale",
+        "dark:invert",
         isActive ? "opacity-100" : "opacity-60"
       )
     : cn(
-        // SVG via currentColor
+        // SVG via currentColor & grayscale Filter
+        isActive ? "grayscale-0" : "grayscale",
         isActive
           ? "text-brand dark:text-ivory"
           : "text-charcoal/60 dark:text-ivory/60"
@@ -75,7 +76,7 @@ export function LogoBadge({
       onPointerCancel={onDeactivate}
       onPointerLeave={onDeactivate}
       className={cn(
-        "group relative block outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-ivory dark:focus-visible:ring-offset-black",
+        "group relative flex items-center justify-center p-4 outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-ivory dark:focus-visible:ring-offset-black",
         // Glow / Ring im Fokuszustand (für beide Medientypen)
         isActive
           ? "drop-shadow-[0_0_18px_rgba(13,126,127,0.45)]"
@@ -91,12 +92,9 @@ export function LogoBadge({
           : { type: "spring", stiffness: 220, damping: 18, mass: 0.6 }
       }
     >
-      <span
-        className="flex h-20 w-40 items-center justify-center rounded-xl"
-        style={{ transform: "translateZ(0px)" }}
-      >
-        {/* Wrapper, damit wir die Farbklassen sauber setzen können */}
-        <span className={colorClass}>{children}</span>
+      {/* Wrapper, damit wir die Farbklassen sauber setzen können */}
+      <span className={cn(colorClass, "flex items-center justify-center")}>
+        {children}
       </span>
     </motion.a>
   );

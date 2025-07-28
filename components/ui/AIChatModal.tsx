@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { useChat } from '@ai-sdk/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
+import Textarea from 'react-textarea-autosize';
 
 interface AIChatModalProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface AIChatModalProps {
 
 export function AIChatModal({ isOpen, onClose }: AIChatModalProps) {
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   
   const { 
     messages, 
@@ -39,6 +41,8 @@ export function AIChatModal({ isOpen, onClose }: AIChatModalProps) {
     if (isOpen) {
       document.addEventListener('keydown', handleEsc);
       document.body.style.overflow = 'hidden';
+      // Focus input when modal opens
+      setTimeout(() => inputRef.current?.focus(), 100);
     }
     
     return () => {
@@ -161,13 +165,25 @@ export function AIChatModal({ isOpen, onClose }: AIChatModalProps) {
 
               {/* Input Form */}
               <div className="border-t border-charcoal/10 dark:border-ivory/10 p-4 sm:p-6">
-                <form onSubmit={handleSubmit} className="flex gap-3">
-                  <input
+                <form 
+                  onSubmit={handleSubmit} 
+                  className="flex items-end gap-3"
+                >
+                  <Textarea
+                    ref={inputRef}
                     value={input}
                     onChange={handleInputChange}
-                    placeholder="What would you like to change on the website?"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        handleSubmit();
+                      }
+                    }}
+                    placeholder="What would you like to change? (Shift+Enter for new line)"
                     disabled={isLoading}
-                    className="flex-1 rounded-full border border-charcoal/20 dark:border-ivory/20 bg-white/60 dark:bg-white/5 px-4 py-3 text-sm text-charcoal dark:text-ivory placeholder:text-charcoal/50 dark:placeholder:text-ivory/50 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 disabled:opacity-50"
+                    rows={1}
+                    maxRows={5}
+                    className="flex-1 resize-none rounded-xl border border-charcoal/20 dark:border-ivory/20 bg-white/60 dark:bg-white/5 px-4 py-3 text-sm text-charcoal dark:text-ivory placeholder:text-charcoal/50 dark:placeholder:text-ivory/50 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 disabled:opacity-50"
                   />
                   <button
                     type="submit"

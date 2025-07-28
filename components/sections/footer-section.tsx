@@ -27,9 +27,7 @@ export function FooterSection() {
 
         <figure className="mt-10 lg:mt-12">
           <blockquote className="text-base sm:text-lg lg:text-xl text-charcoal/70 dark:text-ivory/70 italic leading-relaxed max-w-4xl mx-auto balance">
-            &ldquo;With roots in Ethereum&apos;s early days, we turn complex ideas into
-            scalable, decentralized solutions. Let&apos;s talk confidentially about
-            your vision.&rdquo;
+            “Let’s connect, confidentially and strategically, to explore how we can bring your vision to life.”
           </blockquote>
           <figcaption className="mt-6 lg:mt-8 text-lg sm:text-xl font-medium text-charcoal/70 dark:text-ivory/70">
             Bernd Lapp

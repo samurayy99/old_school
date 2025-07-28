@@ -49,7 +49,7 @@ export function ServicesSection() {
             <div className="w-8 h-0.5 bg-brand ml-4"></div>
           </div>
           <p className="text-lg sm:text-xl lg:text-2xl text-charcoal/70 dark:text-ivory/60 max-w-3xl mx-auto balance leading-relaxed">
-            Delivering clarity and execution across blockchain technology and emerging digital assets.
+            From AI to blockchain, we deliver clarity, strategy, and execution across emerging technologies.
           </p>
         </motion.div>
 
