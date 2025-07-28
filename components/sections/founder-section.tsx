@@ -63,13 +63,13 @@ export function FounderSection() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-center"
         >
-          <p className="font-mono text-sm tracking-widest text-brand/80">FOUNDER</p>
+          <p className="font-mono text-sm tracking-widest text-brand/80 mb-2 lg:mb-3">Founder</p>
           <div className="flex items-center justify-center mt-3 lg:mt-4">
             <div className="w-8 h-0.5 bg-brand mr-4"></div>
             <h2 className="font-lora text-3xl sm:text-4xl lg:text-5xl tracking-tight">Bernd Lapp</h2>
             <div className="w-8 h-0.5 bg-brand ml-4"></div>
           </div>
-          <p className="mt-6 lg:mt-8 text-lg sm:text-xl lg:text-2xl text-charcoal/70 dark:text-ivory/70 max-w-3xl mx-auto balance leading-relaxed">
+          <p className="mt-4 sm:mt-6 text-lg sm:text-xl lg:text-2xl text-charcoal/80 dark:text-ivory/80 balance leading-relaxed">
             From Ethereum’s Advisory Board to founder and innovator — a trusted guide for ambitious Web3 and AI initiatives.
           </p>
         </motion.div>

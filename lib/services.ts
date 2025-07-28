@@ -20,7 +20,7 @@ export const services: Service[] = [
       "Technical Due Diligence: Deep analysis of protocol architecture, scalability, and code maturity.",
       "Tokenomics: Scenario modeling for incentives, dilution, and long-term sustainability.",
       "Ecosystem Fit: Assessment of adoption potential, network effects, and competitive positioning.",
-      "The result: a clear investment memo with a “Go,” “Revise,” or “Pass” recommendation — built for decision-makers."
+      "The result: a clear investment memo with a Go, Revise, or Pass recommendation built for decision-makers."
     ],
   },
   {
@@ -43,13 +43,13 @@ export const services: Service[] = [
     image: "/services/service-development.jpg",
     alt: "Developer working on smart contracts and AI models",
     copy: [
-      "We design and build real-world applications at the intersection of blockchain and AI — from concept to production.",
+      "We design and build real-world applications at the intersection of blockchain and AI from concept to production.",
       "Whether it's a decentralized protocol, validator infrastructure, AI-powered smart contract logic, or full-stack dApps, our in-house and partner teams deliver:",
       "Blockchain Architecture & Protocol Design",
       "Smart Contracts & Token Infrastructure",
       "AI Integration & On-Chain Analytics",
       "Validator & Staking Systems",
-      "We turn ideas into audited, deployable systems — fast, secure, and built for scale."
+      "We turn ideas into audited, deployable systems that are fast, secure, and built for scale."
     ],
   },
   {
@@ -58,13 +58,13 @@ export const services: Service[] = [
     image: "/services/service-strategy.jpg",
     alt: "Futuristic network visual with trend vectors",
     copy: [
-      "We help investors and founders stay ahead of the curve by identifying and executing on what’s next in Web3 and AI.",
+      "We help investors and founders stay ahead of the curve by identifying and executing on what's next in Web3 and AI.",
       "Our focus areas include:",
       "AI x Blockchain: Intelligent agents, on-chain inference, and trustless data pipelines.",
       "DePIN: Decentralized physical infrastructure networks and tokenized coordination.",
       "Restaking & Modular Chains: Capital-efficient security and scalable protocol design.",
       "ZK Proofs: Privacy, scalability, and composability through zero-knowledge systems.",
-      "We translate complex trends into actionable strategies — before they become mainstream."
+      "We translate complex trends into actionable strategies before they become mainstream."
     ],
   },
 ];
