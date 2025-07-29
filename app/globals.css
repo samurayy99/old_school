@@ -7,18 +7,49 @@
   --brand-green-dark: #258A8B;  /* Heller für Dark Mode */
   --brand-green-light: #095858; /* Dunkler für Light Mode */
   
-  /* Logo Feintuning - ChatGPT's Choke-Stroke System */
-  --logo-choke: 0.9;               /* Light: feiner Rückschnitt */
-  --logo-scale: 1;                 /* Light: keine Skalierung */
+  /* Logo Scaling System V2 - Connected to React Components */
+  --logo-choke: 1;                 /* Light: normal brightness */
+  --logo-scale: 1;                 /* Light: full size */
+  --logo-transition: all 0.3s ease; /* Smooth theme transitions */
 }
 
 .dark {
   /* Im Dark Mode wird die dekorative Markenfarbe weiß, wie von Bernd gewünscht */
   --brand-green: #FFFFFF; 
   
-  /* Logo Feintuning für Dark Mode */
-  --logo-choke: 4.0;               /* Dark: RADIKALER Rückschnitt */
-  --logo-scale: 0.985;             /* Dark: DEUTLICH kleiner */
+  /* Logo Scaling für Dark Mode - Now Connected! */
+  --logo-choke: 0.95;              /* Dark: slightly reduced brightness for better contrast */
+  --logo-scale: 1.02;              /* Dark: slightly larger for better visibility */
+}
+
+/* Logo Container Enhancements */
+.logo-container {
+  transition: var(--logo-transition);
+  transform: scale(var(--logo-scale, 1));
+}
+
+.logo-container img {
+  filter: brightness(var(--logo-choke, 1));
+  transition: var(--logo-transition);
+}
+
+/* Responsive Logo Optimizations */
+@media (max-width: 640px) {
+  :root {
+    --logo-scale: 0.95;
+  }
+  .dark {
+    --logo-scale: 0.98;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --logo-scale: 1.05;
+  }
+  .dark {
+    --logo-scale: 1.08;
+  }
 }
 
 /* ChatGPT's Award-winning CSS utilities */
@@ -62,6 +93,27 @@
 /* 3D Flip helpers */
 .perspective { perspective: 1200px; }
 .backface-hidden { backface-visibility: hidden; }
+
+/* Fix for red focus ring during animations - override browser defaults */
+.service-card-button {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.service-card-button:focus,
+.service-card-button:focus-visible,
+.service-card-button:focus-within {
+  outline: none !important;
+  box-shadow: 0 0 0 2px var(--brand-green) !important;
+  border: none !important;
+}
+
+/* Ensure the green focus ring persists during layout animations */
+.service-card-button:focus *,
+.service-card-button:focus-visible *,
+.service-card-button:focus-within * {
+  outline: none !important;
+}
 
 @tailwind base;
 @tailwind components;

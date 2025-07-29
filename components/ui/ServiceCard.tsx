@@ -55,7 +55,7 @@ export default function ServiceCard(props: Props) {
           onBlur={() => setHasFocus(false)}
           aria-expanded={open}
           aria-label={`${title} - open details`}
-          className="w-full h-full overflow-hidden rounded-2xl text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/60"
+          className="service-card-button w-full h-full overflow-hidden rounded-2xl text-left"
         >
           <div className="relative w-full h-[400px]">
             <Image
