@@ -112,7 +112,7 @@ export function AIChatModal({ isOpen, onClose }: AIChatModalProps) {
                       </svg>
                     </div>
                     <p className="text-charcoal/70 dark:text-ivory/70 font-lora text-lg">
-                      Hi, I'm Bernd Lapp
+                      Hi, I&apos;m Bernd Lapp
                     </p>
                     <p className="text-charcoal/60 dark:text-ivory/60 text-sm mt-2">
                       Ask me anything about AI and Blockchain.
