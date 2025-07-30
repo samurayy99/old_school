@@ -83,7 +83,7 @@ export function AIChatModal({ isOpen, onClose }: AIChatModalProps) {
                       Old School AI Assistant
                     </h2>
                     <p className="text-sm text-charcoal/60 dark:text-ivory/60 font-mono">
-                      Ready to help with website feedback
+                      AI & Blockchain Advisor
                     </p>
                   </div>
                 </div>
@@ -112,10 +112,10 @@ export function AIChatModal({ isOpen, onClose }: AIChatModalProps) {
                       </svg>
                     </div>
                     <p className="text-charcoal/70 dark:text-ivory/70 font-lora text-lg">
-                      Hi Bernd! 👋
+                      Hi, I'm Bernd Lapp
                     </p>
                     <p className="text-charcoal/60 dark:text-ivory/60 text-sm mt-2">
-                      Tell me what you&apos;d like to change about the website.
+                      Ask me anything about AI and Blockchain.
                     </p>
                   </div>
                 )}
@@ -179,7 +179,7 @@ export function AIChatModal({ isOpen, onClose }: AIChatModalProps) {
                         handleSubmit();
                       }
                     }}
-                    placeholder="What would you like to change? (Shift+Enter for new line)"
+                    placeholder="Enter your question here..."
                     disabled={isLoading}
                     rows={1}
                     maxRows={5}
