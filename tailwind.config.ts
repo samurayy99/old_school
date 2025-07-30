@@ -19,6 +19,7 @@ const config: Config = {
         sans: ['var(--font-inter)'],
         serif: ['var(--font-lora)'],
         mono: ['var(--font-ibm-plex-mono)'],
+        logo: ['var(--font-teko)', 'Impact', 'Arial Black', 'sans-serif'], // Teko - die perfekte eckige Schrift für Bernd
       },
       colors: {
         brand: {
@@ -58,6 +59,9 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@tailwindcss/typography'),
+  ],
 };
 export default config;

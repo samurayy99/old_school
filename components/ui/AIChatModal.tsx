@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { useChat } from '@ai-sdk/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
 import Textarea from 'react-textarea-autosize';
 
 interface AIChatModalProps {
@@ -120,12 +121,12 @@ export function AIChatModal({ isOpen, onClose }: AIChatModalProps) {
                   </div>
                 )}
                 
-                {messages.map((message) => (
-                  <div
-                    key={message.id}
+                {messages.map((message, index) => (
+                  <div 
+                    key={index} 
                     className={cn(
                       "flex gap-3 max-w-[85%]",
-                      message.role === 'user' ? "ml-auto" : ""
+                      message.role === 'user' ? "ml-auto flex-row-reverse" : ""
                     )}
                   >
                     {message.role === 'assistant' && (
@@ -133,21 +134,22 @@ export function AIChatModal({ isOpen, onClose }: AIChatModalProps) {
                         <div className="h-3 w-3 rounded-full bg-brand" />
                       </div>
                     )}
-                    
-                    <div
+                    <div 
                       className={cn(
                         "rounded-2xl px-4 py-3 text-sm leading-relaxed",
                         message.role === 'user' 
-                          ? "bg-charcoal dark:bg-charcoal text-ivory ml-auto font-medium" 
+                          ? "bg-brand/90 text-ivory" 
                           : "bg-charcoal/5 dark:bg-ivory/5 text-charcoal dark:text-ivory"
                       )}
                     >
-                      {message.content}
+                      <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none">
+                        {message.content}
+                      </ReactMarkdown>
                     </div>
                   </div>
                 ))}
 
-                {isLoading && (
+                {isLoading && (messages.length === 0 || messages[messages.length - 1]?.role === 'user') && (
                   <div className="flex gap-3">
                     <div className="h-8 w-8 rounded-full bg-brand/20 flex items-center justify-center flex-shrink-0 mt-1">
                       <div className="h-3 w-3 rounded-full bg-brand animate-pulse" />

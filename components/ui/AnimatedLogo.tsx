@@ -55,28 +55,8 @@ export function AnimatedLogo({ onComplete }: { onComplete?: () => void }) {
         onAnimationComplete={onComplete}
       />
 
-      {/* 3) Choke: Hintergrundfarbe „schneidet" die Kante zurück */}
-      <path
-        d={d}
-        fill="none"
-        vectorEffect="non-scaling-stroke"
-        className="stroke-ivory dark:stroke-black"
-        style={{
-          strokeWidth: 'var(--logo-choke)',
-          paintOrder: 'stroke'
-        }}
-      />
-      
-      {/* DEBUG: Temporär rot für Sichtbarkeit - ENTFERNEN WENN ES FUNKTIONIERT */}
-      <path
-        d={d}
-        fill="none"
-        vectorEffect="non-scaling-stroke"
-        stroke="red"
-        strokeWidth="0.5"
-        opacity="0.3"
-        style={{ pointerEvents: 'none' }}
-      />
+
+
     </svg>
   );
 }

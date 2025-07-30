@@ -54,7 +54,7 @@ export function HeroSection() {
           variants={rise}
           initial="hidden"
           animate={titleCtrl}
-          className="mt-8 lg:mt-10 font-mono text-4xl tracking-tight text-charcoal dark:text-ivory sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+          className="mt-8 lg:mt-10 font-logo text-4xl tracking-tight text-charcoal dark:text-ivory sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
         >
           OLDSCHOOL
         </motion.h1>

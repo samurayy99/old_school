@@ -2,7 +2,7 @@ import { BackgroundGrid } from "@/components/ui/BackgroundGrid";
 import { Navbar } from "@/components/ui/Navbar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Inter, Lora } from "next/font/google";
+import { IBM_Plex_Mono, Inter, Lora, Teko } from "next/font/google";
 import React from 'react';
 import "./globals.css";
 
@@ -10,6 +10,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
 const lora = Lora({ subsets: ["latin"], display: "swap", variable: "--font-lora" });
 const ibmPlexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "700"], display: "swap", variable: "--font-ibm-plex-mono" });
+const teko = Teko({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"], display: "swap", variable: "--font-teko" });
 
 // Finale Metadaten für die Webseite
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode; }) {
   return (
     <html lang="de" suppressHydrationWarning>
-      <body className={`${inter.variable} ${lora.variable} ${ibmPlexMono.variable} font-sans`}>
+      <body className={`${inter.variable} ${lora.variable} ${ibmPlexMono.variable} ${teko.variable}`}>
         <BackgroundGrid />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Navbar />
